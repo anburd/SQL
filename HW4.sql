@@ -155,5 +155,5 @@ VALUES
 SELECT an_name, an_price
 FROM Analysis
 JOIN Orders ON Analysis.an_id = Orders.ord_an
-WHERE ord_datetime BETWEEN '2020-02-05' AND '2020-02-13';
+WHERE ord_datetime BETWEEN '2020-02-05' AND '2020-02-12';
 

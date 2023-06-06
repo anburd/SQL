@@ -8,57 +8,45 @@ USE HW6;
 */
 
 -- 1)
-
 DELIMITER //
-
 CREATE FUNCTION seconds_in_date(seconds INT)  
 RETURNS VARCHAR(55)
-
 DETERMINISTIC 
-
 BEGIN
 DECLARE days INT;
 DECLARE hours INT;
 DECLARE minutes INT;
 DECLARE text_date VARCHAR(55);
-
     SET days = FLOOR(seconds / (24 * 3600));
     SET seconds = seconds % (24 * 3600);
     SET hours = FLOOR(seconds / 3600);
     SET seconds = seconds % 3600;
     SET minutes = FLOOR(seconds / 60);
     SET seconds = seconds % 60;
-
 SET text_date = CONCAT(days, " days ", hours, " hours ", minutes, " minutes ", seconds, " seconds");
-
 RETURN text_date;
 END //
-
 DELIMITER ;
-SELECT seconds_in_date(523456);
-
-
+SELECT seconds_in_date(123456);
 
 -- 2)
-
-DROP PROCEDURE IF EXISTS even_numbers;
+DROP PROCEDURE IF EXISTS even_nums;
 DELIMITER //
-CREATE PROCEDURE even_numbers()
+CREATE PROCEDURE even_nums()
 BEGIN
-    DECLARE x INT DEFAULT 1;
-    DECLARE result VARCHAR(45) DEFAULT '';
-    WHILE x <= 10 DO
-        IF x % 2 = 0 THEN
+DECLARE i INT DEFAULT 1;
+DECLARE result VARCHAR(45) DEFAULT '';
+WHILE i <= 10 DO
+        IF i % 2 = 0 THEN
             IF result = '' THEN
-                SET result = x;
+                SET result = i;
             ELSE
-                SET result = CONCAT(result, ',', x);
+                SET result = CONCAT(result, ',', i);
             END IF;
         END IF;
-        SET x = x + 1;
-    END WHILE;
-    SELECT result;
+        SET i = i + 1;
+END WHILE;
+SELECT result;
 END //
 DELIMITER ;
-
-CALL even_numbers();
+CALL even_nums();
